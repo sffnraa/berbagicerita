@@ -78,18 +78,15 @@ export function isServiceWorkerAvailable() {
 }
  
 export async function registerServiceWorker() {
-  if ('serviceWorker' in navigator) {
-    try {
-      const basePath = location.pathname.startsWith('/berbagicerita')
-        ? '/berbagicerita'
-        : '';
-
-      const reg = await navigator.serviceWorker.register(`${basePath}/sw.bundle.js`);
-      console.log('Service Worker registered!', reg);
-      return reg;
-    } catch (err) {
-      console.error('Service Worker registration failed:', err);
-    }
+  if (!isServiceWorkerAvailable()) {
+    console.log('Service Worker API unsupported');
+    return;
   }
-  return null;
+
+  try {
+    const registration = await navigator.serviceWorker.register('sw.bundle.js');
+    console.log('Service worker telah terpasang', registration);
+  } catch (error) {
+    console.log('Failed to install service worker:', error);
+  }
 }
