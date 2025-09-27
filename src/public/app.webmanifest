@@ -1,0 +1,66 @@
+{
+  "start_url": "/",
+  "name": "Berbagi Cerita",
+  "short_name": "BagiCerita",
+  "description": "Aplikasi yang dibuat untuk saling berbagi cerita kepada umum tentang apapun itu",
+  "display": "standalone",
+  "background_color": "#647FBC",
+  "theme_color": "#3a558f",
+  "icons": [
+    {
+      "src": "images/icons/icon-x144.png",
+      "type": "image/png",
+      "sizes": "144x144",
+      "purpose": "any"
+    },
+    {
+      "src": "images/icons/icon-x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "images/icons/icon-x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "images/screenshots/bagicerita-01.png",
+      "sizes": "1112x695",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "images/screenshots/bagicerita-02.png",
+      "sizes": "1112x695",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "images/screenshots/bagicerita-03.png",
+      "sizes": "1112x695",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "images/screenshots/bagicerita-04.png",
+      "sizes": "1112x695",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "images/screenshots/bagicerita-05.png",
+      "sizes": "1112x695",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "images/screenshots/bagicerita-06.png",
+      "sizes": "1053x1960",
+      "type": "image/png"
+    }
+  ]
+}

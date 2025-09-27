@@ -1,0 +1,39 @@
+export default class NewPresenter {
+  #view;
+  #model;
+
+  constructor({ view, model }) {
+    this.#view = view;
+    this.#model = model;
+  }
+
+  async showNewFormMap() {
+    this.#view.showMapLoading();
+    try {
+      await this.#view.initialMap();
+    } catch (error) {
+      console.error('showNewFormMap: error:', error);
+    } finally {
+      this.#view.hideMapLoading();
+    }
+  }
+
+  async postNewStory({ description, photoFile, lat, lon }) {
+    this.#view.showSubmitLoadingButton();
+    try {
+      const token = localStorage.getItem('accessToken');
+      const response = await this.#model.addNewStory(token, {
+        description,
+        photoFile,
+        lat,
+        lon,
+      });
+      this.#view.storeSuccessfully(response.message, response.data);
+    } catch (error) {
+      console.error('postNewStory: error:', error);
+      this.#view.storeFailed(error.message);
+    } finally {
+      this.#view.hideSubmitLoadingButton();
+    }
+  }
+}
