@@ -8,6 +8,15 @@ import { BASE_URL } from './config';
 const manifest = self.__WB_MANIFEST;
 precacheAndRoute(manifest);
 
+// --- Force update SW baru ---
+self.addEventListener('install', () => {
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', (event) => {
+  clients.claim();
+});
+
 // Runtime caching
 registerRoute(
   ({ url }) => {
@@ -103,16 +112,22 @@ self.addEventListener("fetch", (event) => {
 });
 
 self.addEventListener('push', (event) => {
-  console.log('Push event diterima');
+  console.log('Push event diterima di sw:', event);
 
-  const data = event.data.json();
+  let data = {};
+  try {
+    data = event.data ? event.data.json() : {};
+  } catch (err) {
+    console.error('Gagal parse push data:', err);
+  }
+
   const title = data.title || 'Berbagi Cerita';
   const options = {
     body: data.options?.body || 'Ada cerita baru untukmu!',
     icon: '/icons/icon-x192.png',
     badge: '/icons/icon-x72.png',
     data: {
-      url: data.options?.url || '/', 
+      url: data.options?.url || '/',
     },
     actions: [
       { action: 'open_detail', title: 'Lihat Detail' },
